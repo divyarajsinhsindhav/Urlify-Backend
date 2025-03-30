@@ -14,19 +14,19 @@ jobs:
             - name: Login to Docker
               run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
             - name: Build Docker Image
-              run: docker build -t divyarajsinh/urlify:latest .
+              run: docker build -t divyrajsinh0013/urlify:latest .
             - name: Push Docker Image
-              run: docker push divyarajsinh/urlify:latest
+              run: docker push divyrajsinh0013/urlify:latest
     
     deploy:
         needs: build
         runs-on: [aws-EC2]
         steps:
             - name: Pull the image from docker hub
-              run: docker pull divyarajsinh/urlify:latest
+              run: docker pull divyrajsinh0013/urlify:latest
             - name: Stop the existing container
               run: docker stop urlify || true
             - name: Remove the existing container
               run: docker rm -f urlify || true
             - name: Run Docker container
-              run: docker run -d --name urlify -p 3000:3000 divyarajsinh/urlify:latest
+              run: docker run -d --name urlify -p 3000:3000 divyrajsinh0013/urlify:latest
