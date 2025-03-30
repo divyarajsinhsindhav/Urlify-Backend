@@ -28,5 +28,7 @@ jobs:
               run: docker stop urlify || true
             - name: Remove the existing container
               run: docker rm -f urlify || true
+            - name: Copy .env file to EC2
+              run: echo "${{ secrets.ENV_FILE }}" | base64 --decode > .env
             - name: Run Docker container
               run: docker run -d --name urlify -p 3000:3000 divyrajsinh0013/urlify:latest
