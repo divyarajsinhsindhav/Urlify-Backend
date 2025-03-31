@@ -32,4 +32,4 @@ jobs:
               run: |
                 echo "${{ secrets.ENV_FILE }}" | tr -d '\r' > .env
             - name: Run Docker container
-              run: docker run -d --name urlify -p 3000:3000 divyrajsinh0013/urlify:latest
+              run: docker run -d --name urlify -p 3000:3000 --env-file .env divyrajsinh0013/urlify:latest
