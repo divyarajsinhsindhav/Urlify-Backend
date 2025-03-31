@@ -13,7 +13,12 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
-app.use(cors())
+app.use(cors({
+    origin: process.env.CLIENT_URL,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+    exposedHeaders: ['Authorization']
+}))
 app.use(morgan('dev'))
 app.use('/', indexRouter)
 app.use('/api/v1', apiRouter)
