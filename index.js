@@ -14,11 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.use(cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:3000',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true, // Allows cookies & authentication headers
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    exposedHeaders: ['Authorization']
+    origin: '*',
 }))
 app.use(morgan('dev'))
 app.use('/', indexRouter)
